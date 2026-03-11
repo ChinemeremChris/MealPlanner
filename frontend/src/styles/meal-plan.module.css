@@ -1,0 +1,80 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 96vw;
+    height: 100vh;
+}
+
+.aboveTable{
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.week{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weekLabel{
+    font-weight: 700;
+}
+
+.weekSelector{
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 22px;
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+}
+
+.tableRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.daysOfWeek{
+    margin-bottom: 0.5rem;
+}
+
+.day{
+    width: calc(90vw/8);
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px black solid;
+    padding: 0.25rem;
+}
+
+.breakfastCell, .lunchCell, .dinnerCell{
+    width: calc(90vw/8);
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px black solid;
+    padding: 0.25rem;
+}
+
+.savePlan{
+    width: 140px;
+    height: 3rem;
+    border-radius: 5px;
+    background-color: darkgreen;
+    font-size: 18px;
+}
+
+.savePlan:disabled{
+    cursor: default;
+}

@@ -1,0 +1,40 @@
+.ingredientBox{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px gray solid;
+    background-color: white;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.inputBox{
+    border: 1px gray solid;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.ingredientName{
+    width: 400px;
+}
+
+.isCrossed{
+    text-decoration: line-through;
+}
+
+.ingredientQty{
+    width: 40px;
+    text-align: right;
+}
+
+.ingredientUnit{
+    width: 70px;
+}
+
+.deleteBtn{
+    border: none;
+    background-color: transparent;
+    color: gray;
+}

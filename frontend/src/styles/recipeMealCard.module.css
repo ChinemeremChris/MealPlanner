@@ -1,0 +1,55 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    align-items: center;
+    border: 1px black solid;
+    border-radius: 10px;
+    justify-content: space-evenly;
+    height: 120px;
+}
+
+.cardImage{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.cardImage img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.cardInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 20px;
+    flex: 1;
+    padding: 0 3rem;
+}
+
+.timeCalories{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    font-style: italic;
+    color: gray;
+    font-size: 14px;
+}
+
+.addButton{
+    background-color: green;
+    font-size: 18px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 3rem;
+    flex-shrink: 0;
+}

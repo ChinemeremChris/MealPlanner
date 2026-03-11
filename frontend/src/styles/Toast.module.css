@@ -1,0 +1,47 @@
+.notificationContainer{
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+
+.error{ 
+    background: #c62828; 
+}
+
+.success{ 
+    background: #2e7d32; 
+}
+
+.entering{
+    animation: slideIn 0.3s ease forwards;
+}
+
+.leaving{
+    animation: slideOut 0.3s ease forwards;
+}
+
+.closeBtn{
+    border: none;
+    padding: 0px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(110%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0);    opacity: 1; }
+    to   { transform: translateX(110%); opacity: 0; }
+}

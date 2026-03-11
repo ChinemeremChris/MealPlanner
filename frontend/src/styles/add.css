@@ -1,0 +1,10 @@
+.addButton{
+    background-color: darkgreen;
+    position: fixed;
+    width: 150px;
+    height: 50px;
+    font-size: 23px;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}

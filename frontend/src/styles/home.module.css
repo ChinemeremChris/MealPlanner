@@ -1,0 +1,198 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero{
+    display: flex;
+    flex-direction: row;
+    min-height: 400px;
+    width: 88vw;
+}
+
+.heroText{
+    width: 40%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.heroBoldText{
+    font-size: 45px;
+    font-weight: 600;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.heroTextFirst, .heroTextSecond{
+    padding: 0px;
+}
+
+.heroTextSubtitle{
+    width: 380px;
+    font-size: 18px;
+    color: #666
+}
+
+.heroImg{
+    position: relative;
+    width: 60%;
+    height: 400px;
+    background-image: url(https://ik.imagekit.io/rqm1oacb7/pexels-peg1997-4937659.jpg?);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.heroImg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0.7) 95%, white 100%);
+}
+
+.heroBtns{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.getStarted, .exploreRecipes{
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 6px 12px;
+    border: 0.4px solid #cbcbcb;
+}
+
+.getStarted{
+    background-color: #028907;
+}
+
+.exploreRecipes{
+    background-color: transparent;
+    color: black;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.share_plan{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.plan, .share{
+    display: flex;
+    flex-direction: column;
+    width: min(450px,100%);
+    border: 0.5px solid white;
+    border-radius: 7px;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 10px rgb(103, 103, 103);
+}
+
+.planImg, .shareImg{
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.planImg{
+    background-image: url(https://ik.imagekit.io/rqm1oacb7/kelly-brito-fMqtBhlJZu4-unsplash.jpg);
+}
+
+.shareImg{
+    background-image: url(https://ik.imagekit.io/rqm1oacb7/pexels-polina-tankilevitch-6419688.jpg);
+}
+
+.shareBody, .planBody{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 4rem;
+}
+
+.share_plan_title{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.share_plan_description{
+    font-size: 16px;
+    color: #666
+}
+
+.shareBtnDiv, .planBtnDiv{
+    display: flex;
+    flex-direction: row;
+}
+
+.shareBtnDiv{
+    justify-content: end;
+}
+
+.shareBtn, .planBtn{
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 8px 30px;
+    font-weight: 500;
+}
+
+.planBtn{
+    background-color: #028907;
+    border: 0.5px solid white;
+}
+
+.shareBtn{
+    background-color: tan;
+    border: 0.5px solid white;
+    color: rgb(91, 52, 1);
+}
+
+.recipeRow{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.recipeRowTitle{
+    font-size: 28.5px;
+    font-weight: 600;
+}
+
+.recipeRowSubtitle{
+    color: #666;
+    font-size: 16px;
+}
+
+.recipeRowBody{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.recipeRowFooter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

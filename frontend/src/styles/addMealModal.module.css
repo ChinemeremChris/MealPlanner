@@ -1,0 +1,45 @@
+.mainModalContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(239, 238, 238, 0.5);
+    z-index: 1002;
+}
+
+.modalBox{
+    width: 800px;
+    max-height: 90vh;
+    min-height: 200px;
+    overflow-y: auto;
+    border: 1px solid black;
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+    background-color: white;
+}
+
+.topBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.closeButton{
+    background-color: transparent;
+    color: black;
+    border: none;
+}
+
+.recipeResults{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1rem;
+}

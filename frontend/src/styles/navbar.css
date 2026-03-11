@@ -1,0 +1,32 @@
+.Nav{
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 5px;
+}
+
+.siteTitle{
+    font-size: 35px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.leftNav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.rightNav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.navHover:hover{
+    cursor: pointer;
+}

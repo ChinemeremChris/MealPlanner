@@ -1,0 +1,32 @@
+.dropdown{
+    position: absolute;
+    top: 3.5rem;
+    right: 3rem;
+    width: 120px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: white;
+    border: 1px gray solid;
+    z-index: 1001;
+}
+
+.dropdown::before{
+    content: '';
+    position: absolute;
+    top: -0.7rem;
+    right: 1.1rem;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-left: 1px gray solid;
+    border-top: 1px gray solid;
+    transform: rotate(45deg);
+}
+
+.actBtn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
