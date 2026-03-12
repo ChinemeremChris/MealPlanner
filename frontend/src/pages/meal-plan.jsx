@@ -125,7 +125,7 @@ export const Mealpage = () => {
         console.log("1st item is:", mealArray[0])
         const [start, end] = getWeekStartEnd(weekStart)
         try{
-            const response = await fetch(`http://localhost:8000/batch/meals?start=${start}&end=${end}`,{
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/batch/meals?start=${start}&end=${end}`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -184,7 +184,7 @@ export const Mealpage = () => {
             try{
                 const [start, end] = getWeekStartEnd(weekStart)
                 console.log(`start = ${start} end = ${end}`)
-                const response = await fetch(`http://localhost:8000/meals?start=${start}&end=${end}`,
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/meals?start=${start}&end=${end}`,
                     {
                         method: "GET",
                         credentials: "include"

@@ -31,7 +31,7 @@ export const AccountModal = ({ setOpenAccountModal }) => {
 
     const handleLogOut = async () => {
         try{
-            const response = await fetch(`http://localhost:8000/auth/jwt/logout`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/jwt/logout`, {
                 method: "POST",
                 credentials: "include"
             })

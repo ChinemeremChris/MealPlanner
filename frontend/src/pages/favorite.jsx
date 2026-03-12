@@ -11,7 +11,7 @@ export const FavoritePage = () => {
 
     const handleDeleteRecipe = async (recipe_id) => {
         try{
-            const response = await fetch(`http://localhost:8000/recipes`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes`, {
                 method: "DELETE",
                 credentials: "include",
                 headers: {
@@ -53,7 +53,7 @@ export const FavoritePage = () => {
         })
 
         try{
-            const response = await fetch(`http://localhost:8000/favorites`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites`, {
                 method: wasAlreadyFavorited ? "DELETE" : "POST",
                 credentials: "include",
                 body: JSON.stringify(recipe_id),
@@ -78,7 +78,7 @@ export const FavoritePage = () => {
     useEffect(() => {
         const getFavorites = async () => {
             try{
-                const response = await fetch("http://localhost:8000/favorites", {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites`, {
                     method: "GET",
                     credentials: "include"
                 })

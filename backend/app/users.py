@@ -7,7 +7,9 @@ from fastapi_users.authentication import AuthenticationBackend, JWTStrategy, Coo
 from fastapi_users.db import SQLAlchemyUserDatabase
 from httpx_oauth.clients.google import GoogleOAuth2
 from app.email_sender import SendEmail
+from dotenv import load_dotenv
 
+load_dotenv()
 SECRET = os.getenv("JWT_SECRET")
 
 class DebugGoogleOAuth2(GoogleOAuth2):
@@ -49,7 +51,7 @@ async def get_user_manager(user_db=Depends(get_user_db)):
 cookie_transport = CookieTransport(
     cookie_max_age=7200,
     cookie_httponly=True,
-    cookie_secure=False,
+    cookie_secure=os.getenv("COOKIE_SECURE", "false").lower() == "true",
     cookie_samesite="lax"
     )
 

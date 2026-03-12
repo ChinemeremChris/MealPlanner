@@ -25,7 +25,7 @@ export const SearchResults = () => {
         })
 
         try{
-            const response = await fetch(`http://localhost:8000/favorites`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites`, {
                 method: wasAlreadyFavorited ? "DELETE" : "POST",
                 credentials: "include",
                 body: JSON.stringify(recipe_id),
@@ -51,7 +51,7 @@ export const SearchResults = () => {
         const fetchSearch = async () => {
             console.log("search term", searchTerm)
             try{
-                const response = await fetch(`http://localhost:8000/search?search_term=${searchTerm}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/search?search_term=${searchTerm}`, {
                     method: "GET",
                     credentials: "include"
                 })
@@ -72,7 +72,7 @@ export const SearchResults = () => {
     useEffect(() => {
         const getFavorites = async () => {
             try{
-                const response = await fetch("http://localhost:8000/favorites", {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites`, {
                     method: "GET",
                     credentials: "include"
                 })

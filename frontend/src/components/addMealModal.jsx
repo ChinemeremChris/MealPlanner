@@ -11,7 +11,7 @@ export const MealModal = ({ setAddMeal, selectedSlot, setMealPlan }) => {
     const onSearch = async (searchTerm) => {
         setNotification(null)
         try{
-            const response = await fetch(`http://localhost:8000/search?search_term=${searchTerm}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/search?search_term=${searchTerm}`, {
                 method: "GET",
                 credentials: "include"
             })

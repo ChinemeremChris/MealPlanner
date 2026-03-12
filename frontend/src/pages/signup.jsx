@@ -17,7 +17,7 @@ export const SignUp = () => {
         setNotification(false)
         setisLoading(true)
         try{
-            const response = await fetch('http://localhost:8000/auth/register', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ export const SignUp = () => {
 
     const handleGoogleSignUp = async () => {
         try{
-            const response = await fetch(`http://localhost:8000/auth/google/authorize`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/google/authorize`, {
                 method: "GET",
                 credentials: "include"
             })

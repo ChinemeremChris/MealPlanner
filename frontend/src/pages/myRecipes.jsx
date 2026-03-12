@@ -18,7 +18,7 @@ export const MyRecipes = () => {
             setNotification(null);
 
             try{
-                const response = await fetch("http://localhost:8000/me/recipes", {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/me/recipes`, {
                     method: "GET",
                     headers: {
                         'Content-Type' : 'application/json'
@@ -45,7 +45,7 @@ export const MyRecipes = () => {
 
         const getFavorites = async () => {
             try{
-                const response = await fetch("http://localhost:8000/favorites", {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites`, {
                     method: "GET",
                     credentials: "include"
                 })
@@ -81,7 +81,7 @@ export const MyRecipes = () => {
         })
 
         try{
-            const response = await fetch(`http://localhost:8000/favorites`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites`, {
                 method: wasAlreadyFavorited ? "DELETE" : "POST",
                 credentials: "include",
                 body: JSON.stringify(recipe_id),
@@ -107,7 +107,7 @@ export const MyRecipes = () => {
         const data_to_find = data.find(r => r.recipe_id === recipe_id)
         console.log("attempting to delete", data_to_find?.recipe_name, recipe_id)
         try{
-            const response = await fetch(`http://localhost:8000/recipes`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes`, {
                 method: "DELETE",
                 credentials: "include",
                 headers: {

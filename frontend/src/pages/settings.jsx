@@ -77,7 +77,7 @@ export const Settings = () => {
     const savePasswordChange = async() => {
         try{
             setIsLoading(true)
-            const response = await fetch(`http://localhost:8000/users/me/change-password`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me/change-password`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -113,7 +113,7 @@ export const Settings = () => {
 
         try{
             setIsLoading(true)
-            const response = await fetch(`http://localhost:8000/users/me/profile`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me/profile`, {
                 method: "PATCH",
                 credentials: "include",
                 headers: {
@@ -139,7 +139,7 @@ export const Settings = () => {
         const newVal = e.target.checked
         setMealPlanSwitch(newVal)
         try{
-            const response = await fetch(`http://localhost:8000/users/me`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me`, {
                 method: "PATCH",
                 credentials: "include",
                 headers: {
@@ -162,7 +162,7 @@ export const Settings = () => {
         const newVal = e.target.checked
         setGroceryReminder(newVal)
         try{
-            const response = await fetch(`http://localhost:8000/users/me`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me`, {
                 method: "PATCH",
                 credentials: "include",
                 headers: {
@@ -183,7 +183,7 @@ export const Settings = () => {
 
     const handleDeleteAccount = async () => {
         try{
-            const response = await fetch(`http://localhost:8000/users/me/delete-account`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me/delete-account`, {
                 method: "DELETE",
                 credentials: "include"
             })

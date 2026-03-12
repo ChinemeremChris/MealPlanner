@@ -66,7 +66,7 @@ export const Shopping = () => {
             const [start, end] = getWeekStartEnd(weekStart)
             console.log("fetching ingredients")
             try{
-                const response = await fetch(`http://localhost:8000/ingredients?start=${start}&end=${end}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/ingredients?start=${start}&end=${end}`, {
                     method: "GET",
                     credentials: "include"
                 })

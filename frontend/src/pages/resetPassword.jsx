@@ -48,7 +48,7 @@ export const ResetPassword = () => {
 
     const handleSubmit = async() => {
         try{
-            const response = await fetch(`http://localhost:8000/auth/reset-password`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/reset-password`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

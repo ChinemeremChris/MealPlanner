@@ -7,7 +7,7 @@ export const UserProvider = ({ children }) => {
     const [userLoading, setUserLoading] = useState(true)
     const fetchUser = async () => {
         try{
-            const response = await fetch(`http://localhost:8000/users/me`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me`, {
                 method: "GET",
                 credentials: "include"
             })

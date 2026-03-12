@@ -76,7 +76,7 @@ export const EditRecipeModal = ({ recipe, setEditOpen, setHasRecipeBeenUpdated }
 
         try{
             setLoading(true)
-            const response = await fetch(`http://localhost:8000/recipes/${recipe.recipe_id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes/${recipe.recipe_id}`, {
                 method: "PATCH",
                 body: form,
                 credentials: "include"

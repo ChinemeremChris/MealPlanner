@@ -20,7 +20,7 @@ export const Login = () => {
         e.preventDefault();
         setisLoading(true)
         try{
-            const response = await fetch('http://localhost:8000/auth/jwt/login',{
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/jwt/login`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -49,7 +49,7 @@ export const Login = () => {
 
     const handleGoogleLogin = async () => {
         try{
-            const response = await fetch(`http://localhost:8000/auth/google/authorize`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/google/authorize`, {
                 method: "GET",
                 credentials: "include"
             })

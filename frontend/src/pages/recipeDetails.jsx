@@ -23,7 +23,7 @@ export const RecipeDetails = () => {
     const toggleFavorite = async () => {
         console.log("toggling favorite")
         try{
-            const response = await fetch(`http://localhost:8000/favorites/`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites/`, {
                 method: isFavorited ? "DELETE" : "POST",
                 credentials: "include",
                 headers: {
@@ -47,7 +47,7 @@ export const RecipeDetails = () => {
 
     const deleteRecipe = async () => {
         try{
-            const response = await fetch(`http://localhost:8000/recipes`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes`, {
                 method: "DELETE",
                 credentials: "include",
                 headers: {
@@ -61,7 +61,7 @@ export const RecipeDetails = () => {
             }
             setNotification({message: "Successfully deleted recipe", type: "success"})
 
-            navigate("http://localhost:5173/user/recipes")
+            navigate("/user/recipes")
         }catch (e){
             setNotification({message: e.message, type: "error"})
         }
@@ -70,7 +70,7 @@ export const RecipeDetails = () => {
     useEffect(() => {
         const fetchRecipe = async () => {
             try{
-                const response = await fetch(`http://localhost:8000/recipes/${recipe_id}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes/${recipe_id}`, {
                     method: 'GET'
                 })
                 if (response.ok){
@@ -93,7 +93,7 @@ export const RecipeDetails = () => {
         const checkIfFavorite = async () => {
             console.log("checking if favorite")
             try{
-                const response = await fetch(`http://localhost:8000/favorites/${recipe_id}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites/${recipe_id}`, {
                     method: "GET",
                     credentials: "include"
                 })

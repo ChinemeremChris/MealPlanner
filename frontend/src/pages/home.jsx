@@ -9,7 +9,7 @@ export const Homepage = () => {
     useEffect(() => {
         const fetchRecipes = async () =>{
             try{
-                const response = await fetch(`http://localhost:8000/recipes`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes`, {
                     method: "GET",
                     credentials: "include"
                 })

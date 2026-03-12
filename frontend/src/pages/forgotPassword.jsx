@@ -6,7 +6,7 @@ export const ForgotPassword = () => {
     const [notification, setNotification] = useState(null)
 
     const handleSubmit = async() => {
-        await fetch(`http://localhost:8000/auth/forgot-password`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/auth/forgot-password`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

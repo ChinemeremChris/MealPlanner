@@ -25,7 +25,7 @@ export const OAuthHandler = () => {
 
         try{
             setLoading(true)
-            const response = await fetch(`http://localhost:8000/users/me/profile`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me/profile`, {
                 method: "PATCH",
                 credentials: "include",
                 headers: {

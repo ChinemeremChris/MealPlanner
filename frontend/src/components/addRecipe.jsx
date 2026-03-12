@@ -74,7 +74,7 @@ export const AddRecipeModal = ({ setAddOpen, triggerRefetch }) => {
 
         try{
             setLoading(true)
-            const response = await fetch('http://localhost:8000/recipe', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/recipe`, {
                 method: "POST",
                 body: form,
                 credentials: "include"

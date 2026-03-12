@@ -6,10 +6,7 @@ import { SignUp } from './pages/signup'
 import { MainLayout } from './pages/mainlayout'
 import { Mealpage } from './pages/meal-plan'
 import { Homepage } from './pages/home'
-import { Aboutpage } from './pages/about'
-import { Recipes } from './pages/recipe'
 import { SharedRecipes } from './pages/sharedRecipes'
-import { ThisWeek } from './pages/thisWeek'
 import { RecipeDetails } from './pages/recipeDetails'
 import { MyRecipes } from './pages/myRecipes'
 import { FavoritePage } from './pages/favorite'
@@ -50,16 +47,13 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: "/", element: <Homepage /> },
-      { path: "/about", element: <Aboutpage /> },
       { path: "/recipes/:recipe_id", element: <RecipeDetails /> },
       {
         element: <ProtectedRoute />,
         children: [
           { path: "/meal", element: <Mealpage /> },
-          { path: "/recipes", element: <Recipes /> },
           { path: "/user/recipes", element:<MyRecipes />},
           { path: "/shared-recipes", element: <SharedRecipes /> },
-          { path: "/week", element: <ThisWeek /> },
           { path: "/user/favorites", element: <FavoritePage /> },
           { path: "/shopping", element: <Shopping />},
           { path: "/search", element: <SearchResults />},
