@@ -52,20 +52,6 @@ app.include_router(fastapi_users.get_reset_password_router(), prefix="/auth", ta
 
 password_helper = PasswordHelper()
 
-#sendgrid
-# message = Mail(
-#     from_email="webdevincorp@outlook.com",
-#     to_emails="ccjezzy@gmail.com",
-#     subject="First Email",
-#     html_content="<p>I am doing <strong>THIS!</strong></p>"
-# )
-
-# try:
-#     sg = SendGridAPIClient(os.getenv("SENDGRID_API_KEY"))
-#     response = sg.send(message)
-#     print(f"{response.status_code} \n {response.body} \n {response.headers}")
-# except Exception as e:
-#     print(e.message)
 
 @oauth_router.get("/auth/google/authorize")
 async def google_authorize():
@@ -256,7 +242,7 @@ async def GetAllUserRecipes(user: User = Depends(current_active_user), session: 
     return recipe_model_list
 
 @app.get("/recipes/{recipe_id}", response_model=RecipeOut)
-async def GetOneUserRecipe(recipe_id: Annotated[uuid.UUID, Path()], user: User = Depends(current_active_user), session: AsyncSession = Depends(get_async_session)):
+async def GetOneUserRecipe(recipe_id: Annotated[uuid.UUID, Path()], session: AsyncSession = Depends(get_async_session)):
     query = select(Recipe).options(selectinload(Recipe.recipe_ingredients).selectinload(Recipe_Ingredient.ingredient), selectinload(Recipe.creator), selectinload(Recipe.instructions), selectinload(Recipe.creator)).where(Recipe.recipe_id == recipe_id)
     recipe = await session.scalar(query)
     

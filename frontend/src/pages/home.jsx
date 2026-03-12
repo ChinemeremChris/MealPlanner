@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react"
 import { RecipeCard } from "../components/recipeCard"
 import styles from '../styles/home.module.css'
+import { useNavigate } from "react-router-dom"
 export const Homepage = () => {
     const [recipeList, setRecipeList] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchRecipes = async () =>{
@@ -37,8 +39,8 @@ export const Homepage = () => {
                         Join our community to find recipes, create and share your own, and plan your perfect meals
                     </div>
                     <div className={styles.heroBtns}>
-                        <button type="button" className={styles.getStarted}>Get Started</button>
-                        <button type="button" className={styles.exploreRecipes}>Explore Recipes</button>
+                        <button type="button" className={styles.getStarted} onClick={() => navigate("/shared-recipes")}>Get Started</button>
+                        <button type="button" className={styles.exploreRecipes} onClick={() => navigate("/shared-recipes")}>Explore Recipes</button>
                     </div>
                 </div>
                 <div className={styles.heroImg}> </div>
@@ -53,7 +55,7 @@ export const Homepage = () => {
                                 Keep track of your meals, get weekly nutritional info and grocery list
                             </div>
                             <div className={styles.planBtnDiv}>
-                                <button type="button" className={styles.planBtn}>Create Meal Plans</button>
+                                <button type="button" className={styles.planBtn} onClick={() => navigate("/meal")}>Create Meal Plans</button>
                             </div>
                         </div>
                     </div>
@@ -83,7 +85,7 @@ export const Homepage = () => {
                         }
                     </div>
                     <div className={styles.recipeRowFooter}>
-                        <button type="button" className={styles.shareBtn}>View More Recipes</button>
+                        <button type="button" className={styles.shareBtn} onClick={() => navigate("/shared-recipes")}>View More Recipes</button>
                     </div>
                 </div>
             </div>

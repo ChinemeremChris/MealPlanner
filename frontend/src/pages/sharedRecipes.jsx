@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { RecipeCard } from "../components/recipeCard"
 import '../styles/sharedRecipes.css'
 import { Toast } from "../components/Toast"
+import { SideBarHeading } from "../components/sideBarHeading"
 import { RefetchContext } from "../contexts/RefetchContext"
 
 export const SharedRecipes = () => {
@@ -135,6 +136,7 @@ export const SharedRecipes = () => {
 
     return (
         <>
+            <SideBarHeading eyebrow={"Shared By The Community"} title={"Recipe Hub"} />
             <div className="recipeGrid">
                 {data.map((recipe) => (
                     <RecipeCard key={recipe.recipe_id} creator_id={recipe.creator_id} creator_name={recipe.creator_name} recipe_id={recipe.recipe_id} recipe_name={recipe.recipe_name} photo_url={recipe.photo_url} calories={recipe.calories} prep_time={recipe.prep_time} isFavorited={favoritedRecipes.has(recipe.recipe_id)} toggleFavorite={toggleFavorite} handleDeleteRecipe={handleDeleteRecipe}/>

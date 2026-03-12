@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { RecipeCard } from "../components/recipeCard"
+import { SideBarHeading } from "../components/sideBarHeading"
 import '../styles/sharedRecipes.css'
 import { Toast } from "../components/Toast"
 
@@ -104,6 +105,7 @@ export const FavoritePage = () => {
 
     return (
         <>
+            <SideBarHeading eyebrow={"Eye-catching Recipes"} title={"Bookmarked Recipes"} />
             <div className="recipeGrid">
                 {data.map((recipe) => (
                     <RecipeCard key={recipe.recipe_id} creator_id={recipe.actual_creator_id} creator_name={recipe.actual_creator_name} recipe_id={recipe.recipe_id} recipe_name={recipe.recipe_name} photo_url={recipe.photo_url} calories={recipe.calories} prep_time={recipe.prep_time} isFavorited={favoritedRecipes.has(recipe.recipe_id)} toggleFavorite={toggleFavorite} handleDeleteRecipe={handleDeleteRecipe}/>

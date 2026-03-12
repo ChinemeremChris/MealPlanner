@@ -14,8 +14,10 @@ class UserCreate(schemas.BaseUserCreate):
     lname: str
 
 class UserUpdate(schemas.BaseUserUpdate):
-    fname: str
-    lname: str
+    fname: Optional[str] = None
+    lname: Optional[str] = None
+    meal_plan_reminder: Optional[bool] = None
+    grocery_reminder: Optional[bool] = None
 
 class ChangePasswordRequest(BaseModel):
     current_password: str

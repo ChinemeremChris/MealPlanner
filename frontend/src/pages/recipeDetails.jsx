@@ -71,8 +71,7 @@ export const RecipeDetails = () => {
         const fetchRecipe = async () => {
             try{
                 const response = await fetch(`http://localhost:8000/recipes/${recipe_id}`, {
-                    method: 'GET',
-                    credentials: 'include'
+                    method: 'GET'
                 })
                 if (response.ok){
                     const newData = await response.json()
@@ -99,7 +98,7 @@ export const RecipeDetails = () => {
                     credentials: "include"
                 })
                 if (!response.ok){
-                    throw new Error ("Error fully loading page")
+                    throw new Error ("Error checking bookmarked")
                 }
                 const result = await response.json()
                 setIsFavorited(result)

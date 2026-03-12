@@ -26,6 +26,8 @@ class User(SQLAlchemyBaseUserTableUUID, Base):
     searchable: Mapped[bool] = mapped_column(Boolean, default=True)
     is_deleted: Mapped[bool] = mapped_column(default=False)
     deleted_at: Mapped[datetime | None] = mapped_column(nullable=True)
+    meal_plan_reminder: Mapped[bool] = mapped_column(Boolean, default=True, server_default="1")
+    grocery_reminder: Mapped[bool] = mapped_column(Boolean, default=True, server_default="1")
 
     recipes: Mapped[list["Recipe"]] = relationship(back_populates="creator")
     user_meals: Mapped[list["Meal"]] = relationship(back_populates="eater")

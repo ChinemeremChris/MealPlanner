@@ -7,6 +7,7 @@ import { useBlocker } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import { Toast } from '../components/Toast'
+import { SideBarHeading } from '../components/sideBarHeading'
 
 export const Mealpage = () => {
     const [addMeal, setAddMeal] = useState(false)
@@ -237,6 +238,7 @@ export const Mealpage = () => {
 
     return (
         <>
+            <SideBarHeading eyebrow={"Plan Your Meals"} title={"Meal Plan"} />
             <div className={styles.mainContainer}>
                 {addMeal && <MealModal setAddMeal={setAddMeal} selectedSlot={selectedSlot} setMealPlan={setMealPlan}/>}
                 {unsavedChanges && <UnsavedChangesModal handleCancel={handleCancel} handleDiscardAndLeave={handleDiscardAndLeave} handleSaveAndLeave={handleSaveAndLeave} />}

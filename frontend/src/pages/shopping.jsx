@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker"
 import { ShoppingRow } from "../components/ShoppingRow"
 import styles from '../styles/shopping.module.css'
 import { Toast } from "../components/Toast"
+import { SideBarHeading } from "../components/sideBarHeading"
 
 export const Shopping = () => {
     const [weekStart, setWeekStart] = useState(Date())
@@ -105,9 +106,9 @@ export const Shopping = () => {
 
     return (
         <>
+            <SideBarHeading eyebrow={"Meals need ingredients"} title={"Grocery List"} />
             <div className={styles.mainContainer}>
                 <div className={styles.topLine}>
-                    <span className={`${styles.weekLabel} ${styles.weekSelector}`}>Grocery ·</span> 
                     <DatePicker 
                         selected={weekStart}
                         onChange={(newDate) => setWeekStart(newDate)}

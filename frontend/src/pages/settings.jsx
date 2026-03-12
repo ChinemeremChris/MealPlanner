@@ -40,6 +40,8 @@ export const Settings = () => {
             setLname(currentUser?.lname)
             setEmail(currentUser?.email)
             setProfilePrivacy(currentUser?.searchable)
+            setMealPlanSwitch(currentUser?.meal_plan_reminder)
+            setGroceryReminder(currentUser?.grocery_reminder)
         }
     }, [currentUser])
 
@@ -130,6 +132,52 @@ export const Settings = () => {
             setNotification({message: e.message, type: "error"})
         }finally{
             setIsLoading(false)
+        }
+    }
+
+    const toggleMealPlanReminder = async (e) => {
+        const newVal = e.target.checked
+        setMealPlanSwitch(newVal)
+        try{
+            const response = await fetch(`http://localhost:8000/users/me`, {
+                method: "PATCH",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({meal_plan_reminder: newVal})
+            })
+            if (!response.ok){
+                setMealPlanSwitch(!newVal)
+                const errData = await response.json()
+                console.log(errData)
+                throw new Error("Error switching preference. Try again!")
+            }
+        }catch(e){
+            setNotification({message: e.message, type: "error"})
+        }
+    }
+
+    const toggleGroceryReminder = async (e) => {
+        const newVal = e.target.checked
+        setGroceryReminder(newVal)
+        try{
+            const response = await fetch(`http://localhost:8000/users/me`, {
+                method: "PATCH",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({grocery_reminder: newVal})
+            })
+            if (!response.ok){
+                setGroceryReminder(!newVal)
+                const errData = await response.json()
+                console.log(errData)
+                throw new Error("Error switching preference. Try again!")
+            }
+        }catch(e){
+            setNotification({message: e.message, type: "error"})
         }
     }
 
@@ -302,8 +350,8 @@ export const Settings = () => {
                                         <label className={styles.switch}>
                                             <input 
                                                 type="checkbox" 
-                                                checked={mealPlanSwitch}
-                                                onChange={(e) => setMealPlanSwitch(e.target.checked)}
+                                                checked={mealPlanSwitch ?? true}
+                                                onChange={(e) => toggleMealPlanReminder(e)}
                                             />
                                             <span className={styles.slider}></span>
                                         </label>
@@ -313,8 +361,8 @@ export const Settings = () => {
                                         <label className={styles.switch}>
                                             <input 
                                                 type="checkbox" 
-                                                checked={groceryReminder}
-                                                onChange={(e) => setGroceryReminder(e.target.checked)}
+                                                checked={groceryReminder ?? true}
+                                                onChange={(e) => toggleGroceryReminder(e)}
                                             />
                                             <span className={styles.slider}></span>
                                         </label>
