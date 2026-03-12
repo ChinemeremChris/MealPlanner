@@ -1,15 +1,15 @@
 from fastapi import FastAPI, Depends, HTTPException, Query, Body, Path, UploadFile, File, Form, Response, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-from db import User, Recipe, Ingredient, Recipe_Ingredient, Instruction, Meal, Calories, Favorites, OAuthAccount, create_db_and_tables, get_async_session, get_user_db
+from app.db import User, Recipe, Ingredient, Recipe_Ingredient, Instruction, Meal, Calories, Favorites, OAuthAccount, create_db_and_tables, get_async_session, get_user_db
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from contextlib import asynccontextmanager
 from sqlalchemy import select, delete, or_
-from users import auth_backend, current_active_user, fastapi_users, google_oauth_client, get_user_manager, cookie_transport, get_jwt_strategy
-from schemas import UserRead, UserCreate, UserUpdate, ChangePasswordRequest, RecipeOut, RecipeIn, IngredientIn, IngredientOut, MealIn, MealOut, MealWithRecipeOut, InstructionOut, FavoritedRecipeOut
+from app.users import auth_backend, current_active_user, fastapi_users, google_oauth_client, get_user_manager, cookie_transport, get_jwt_strategy
+from app.schemas import UserRead, UserCreate, UserUpdate, ChangePasswordRequest, RecipeOut, RecipeIn, IngredientIn, IngredientOut, MealIn, MealOut, MealWithRecipeOut, InstructionOut, FavoritedRecipeOut
 from typing import Annotated, List
 import uuid
-from images import imageKit
+from app.images import imageKit
 import tempfile
 import shutil
 import os
@@ -18,8 +18,8 @@ from sendgrid.helpers.mail import Mail
 import json
 from datetime import datetime, date
 from dotenv import load_dotenv
-from calories import search_ingredient_calories
-from conversion import ConvertToGrams
+from app.calories import search_ingredient_calories
+from app.conversion import ConvertToGrams
 from fastapi.responses import RedirectResponse
 from fastapi_users.password import PasswordHelper
 from fastapi_users.exceptions import UserNotExists

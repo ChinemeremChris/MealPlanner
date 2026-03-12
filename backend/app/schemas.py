@@ -29,6 +29,13 @@ class InstructionOut(BaseModel):
     step_number: int
     instruction_text: str
 
+class IngredientOut(BaseModel):
+    ingredient_id: uuid.UUID
+    ingredient_name: str
+    ingredient_quantity: float | None = 1
+    ingredient_unit: str | None = "unit"
+    ingredient_preparation_style: str | None
+
 class RecipeOut(BaseModel):
     recipe_id: uuid.UUID
     creator_name: str
@@ -50,13 +57,6 @@ class RecipeIn(BaseModel):
     photo_url: str | None = None
 
 class IngredientIn(BaseModel):
-    ingredient_name: str
-    ingredient_quantity: float | None = 1
-    ingredient_unit: str | None = "unit"
-    ingredient_preparation_style: str | None
-
-class IngredientOut(BaseModel):
-    ingredient_id: uuid.UUID
     ingredient_name: str
     ingredient_quantity: float | None = 1
     ingredient_unit: str | None = "unit"

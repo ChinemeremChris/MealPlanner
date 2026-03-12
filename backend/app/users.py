@@ -2,11 +2,11 @@ import os
 import uuid
 from fastapi import Depends, Request, HTTPException
 from fastapi_users import BaseUserManager, UUIDIDMixin, FastAPIUsers
-from db import User, get_user_db
+from app.db import User, get_user_db
 from fastapi_users.authentication import AuthenticationBackend, JWTStrategy, CookieTransport
 from fastapi_users.db import SQLAlchemyUserDatabase
 from httpx_oauth.clients.google import GoogleOAuth2
-from email_sender import SendEmail
+from app.email_sender import SendEmail
 
 SECRET = os.getenv("JWT_SECRET")
 
@@ -22,8 +22,6 @@ class DebugGoogleOAuth2(GoogleOAuth2):
             raise
 
 google_oauth_client = DebugGoogleOAuth2(os.getenv("GOOGLE_OAUTH_CLIENT_ID", ""), os.getenv("GOOGLE_OAUTH_CLIENT_SECRET", ""), scopes=["openid", "email", "profile"])
-print("CLIENT_ID: ", os.getenv("GOOGLE_OAUTH_CLIENT_ID", ""))
-print("CLIENT_SECRET: ", os.getenv("GOOGLE_OAUTH_CLIENT_SECRET", ""))
 
 class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = SECRET

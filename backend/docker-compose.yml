@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  redis:
+    image: redis
+  fastapi:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  celery_worker:
+    build: .
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    command: celery -A app.celery_app worker --loglevel=info --pool=solo
+    
+  celery_beat:
+    build: .
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    command: celery -A app.celery_app beat --loglevel=info

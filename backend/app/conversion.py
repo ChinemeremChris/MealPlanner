@@ -1,5 +1,5 @@
 from sqlalchemy import select
-from db import IngredientConversion
+from app.db import IngredientConversion
 
 UNIT_TO_GRAMS = {
     "grams": 1,

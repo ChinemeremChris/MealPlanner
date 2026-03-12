@@ -1,6 +1,6 @@
 from app.celery_app import celery_app
 from celery.schedules import crontab
-from app.db import User, get_async_session
+from app.db import User
 from app.email_sender import SendEmail
 from dotenv import load_dotenv
 import os
