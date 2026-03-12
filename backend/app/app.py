@@ -151,7 +151,7 @@ async def DeleteUser(response: Response, user: User = Depends(current_active_use
         path=cookie_transport.cookie_path,
         domain=cookie_transport.cookie_domain
     )
-    return {"message": "Account has been deleted"}
+    return {"message": "Account has been deleted. Contact support team."}
 
 
 @app.get("/recipes", response_model=list[RecipeOut])
