@@ -106,11 +106,18 @@ export const FavoritePage = () => {
     return (
         <>
             <SideBarHeading eyebrow={"Eye-catching Recipes"} title={"Bookmarked Recipes"} />
-            <div className="recipeGrid">
-                {data.map((recipe) => (
-                    <RecipeCard key={recipe.recipe_id} creator_id={recipe.actual_creator_id} creator_name={recipe.actual_creator_name} recipe_id={recipe.recipe_id} recipe_name={recipe.recipe_name} photo_url={recipe.photo_url} calories={recipe.calories} prep_time={recipe.prep_time} isFavorited={favoritedRecipes.has(recipe.recipe_id)} toggleFavorite={toggleFavorite} handleDeleteRecipe={handleDeleteRecipe}/>
-                ))}
-            </div>
+            {data.length > 0 ? (
+                <div className="recipeGrid">
+                    {data.map((recipe) => (
+                        <RecipeCard key={recipe.recipe_id} creator_id={recipe.actual_creator_id} creator_name={recipe.actual_creator_name} recipe_id={recipe.recipe_id} recipe_name={recipe.recipe_name} photo_url={recipe.photo_url} calories={recipe.calories} prep_time={recipe.prep_time} isFavorited={favoritedRecipes.has(recipe.recipe_id)} toggleFavorite={toggleFavorite} handleDeleteRecipe={handleDeleteRecipe}/>
+                    ))}
+                </div>
+                ):(
+                    <div className="emptyPage">
+                        Nothing in favorites? Browse the recipe hub for tantalizing ideas!
+                    </div>
+                )
+            }    
             {notification && (
                 <Toast message={notification.message} type={notification.type} handleClose={() => setNotification(null)}/>
             )}

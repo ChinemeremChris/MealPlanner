@@ -1,7 +1,13 @@
 import { X } from 'lucide-react'
 import styles from '../styles/deleteConfirmationModal.module.css'
+import { useState } from 'react'
 
 export const DeleteConfirmationModal = ({ recipe_name, deleteRecipe, setDeleteModalOpen }) => {
+    const [deleting, setDeleting]= useState(false)
+    const handleDeleteRecipe = async () => {
+        await deleteRecipe()
+        setDeleting(true)
+    }
     return(
         <div className={styles.overlay}>
             <div className={styles.deleteModal}>
@@ -20,8 +26,8 @@ export const DeleteConfirmationModal = ({ recipe_name, deleteRecipe, setDeleteMo
                     <button className={styles.cancelBtn} onClick={() => setDeleteModalOpen(false)}>
                         Cancel
                     </button>
-                    <button className={styles.deleteBtn} onClick={() => deleteRecipe()}>
-                        Delete
+                    <button className={styles.deleteBtn} onClick={() => handleDeleteRecipe()} disabled={deleting}>
+                        {deleting ? `Deleting...` : `Delete`}
                     </button>
                 </div>
             </div>

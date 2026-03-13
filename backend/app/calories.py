@@ -49,11 +49,22 @@ async def get_nutrition(api_key: str, query: str, url: str, retries=3):
                 food = foods[0]
 
                 if food:
+                    energy_values = {}
                     for nutrient in food.get("foodNutrients", []):
-                        if nutrient.get("nutrientId") in [2047, 1008, 2048]:
-                            calories = round(nutrient.get("value") / 100, 2)
-                            print(f"calories in {query} is {calories}")
-                            return calories
+                        nid = nutrient.get("nutrientId")
+                        if nid in [2047, 1008, 2048]:
+                            energy_values[nid] = nutrient.get("value")
+                    if 1008 in energy_values:
+                        calories = energy_values[1008]
+                    elif 2047 in energy_values:
+                        calories = energy_values[2047]
+                    elif 2048 in energy_values:
+                        calories = energy_values[2048] / 4.18
+                    else:
+                        return None
+                    calories = round(calories / 100, 2)
+                    print(f"calories in {query} is {calories}")
+                    return calories
                 return None
                 
         except httpx.ReadTimeout:

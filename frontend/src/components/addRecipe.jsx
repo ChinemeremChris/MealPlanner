@@ -149,7 +149,7 @@ export const AddRecipeModal = ({ setAddOpen, triggerRefetch }) => {
                         <button type="button" onClick={addInstruction}>Add Instruction</button>
                     </div>
                     <div>
-                        <div className="subLabel">Upload Image (Optional)</div>
+                        <div className="subLabel">Upload Image</div>
                         <div>
                             <input type="file" accept="image/*" onChange={(e) => {setImageFile(e.target.files[0])}} />
                             {imageFile && <img src={URL.createObjectURL(imageFile)} alt="preview" style={{ maxWidth:"100%", borderRadius:"8px" }} />}

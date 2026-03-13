@@ -883,3 +883,43 @@ async def DeleteFavorite(recipe_id: Annotated[uuid.UUID, Body()], user: User = D
     await session.delete(favorite)
     await session.commit()
     return {"message": "recipe removed from favorites"}
+    
+
+@app.get("/homepage")
+async def HomePageRecipes(session: AsyncSession = Depends(get_async_session)):
+    query = select(Recipe).options(selectinload(Recipe.recipe_ingredients).selectinload(Recipe_Ingredient.ingredient), selectinload(Recipe.creator), selectinload(Recipe.instructions)).where(Recipe.creator_id == 'c4e426c6-9173-464f-9cad-128dc4a92cef')
+    recipes = await session.scalars(query)
+    recipe_out_list = []
+    for recipe in recipes:
+        ingredient_out_list = []
+        for ri in recipe.recipe_ingredients:
+            ingredient_out_list.append(IngredientOut(
+                ingredient_id=ri.ingredient_id,
+                ingredient_name=ri.ingredient.ingredient_name,
+                ingredient_quantity=ri.quantity,
+                ingredient_unit=ri.unit,
+                ingredient_preparation_style=ri.preparation_style
+            ))
+        instruction_out_list = []
+        for instruction in recipe.instructions:
+            instruction_out_list.append(InstructionOut(
+                instruction_id=instruction.instruction_id,
+                recipe_id=recipe.recipe_id,
+                step_number=instruction.step_number,
+                instruction_text=instruction.instruction_text
+            ))
+        recipe_out_list.append(RecipeOut(
+            recipe_id=recipe.recipe_id,
+            creator_name="Deleted User" if recipe.creator.is_deleted else f"{recipe.creator.fname} {recipe.creator.lname}",
+            creator_id=recipe.creator_id,
+            recipe_name=recipe.recipe_name,
+            serving=recipe.serving,
+            tag=recipe.tag,
+            prep_time=recipe.prep_time,
+            photo_url=recipe.photo_url,
+            calories=recipe.calories,
+            ingredients=ingredient_out_list,
+            instructions=instruction_out_list
+        ))
+
+    return recipe_out_list

@@ -36,10 +36,22 @@ export const Login = () => {
                 await refreshUser()
                 const next = location.state?.next || "/"
                 navigate(next)
-            }else{
-                const errData = await response.json()
-                setNotification({ message: errData.detail || 'Login failed', type: "error"})
             }
+
+            switch (response.status) {
+                case 401:
+                    setNotification({message: "Incorrect email or password", type: "error"});
+                    break;
+                case 403:
+                    setNotification({message: "Account access denied", type: "error"});
+                    break;
+                case 422:
+                    setNotification({message: "Invalid input format", type: "error"});
+                    break;
+                default:
+                    setNotification({message: "Unexpected error occurred", type: "error"});
+            }
+
         }catch(error){
             setNotification({ message: error.message || 'Login failed', type: "error"})
         }finally{

@@ -30,10 +30,7 @@ export const RecipeCard = ({ creator_id, creator_name, recipe_id, recipe_name, p
     const deleteRecipe = async () => {
         const success = await handleDeleteRecipe(recipe_id)
         if (success){
-            setNotification({message: "Successfully deleted recipe", type: "success"})
             setDeleteModalOpen(false)
-        }else{
-            setNotification({message: "Failed to delete recipe", type: "error"})
         }
     }
 

@@ -125,7 +125,7 @@ export const Shopping = () => {
                     ingredientList.map((ingredient) => (
                         <ShoppingRow key={ingredient.id} ing_data={ingredient} isCrossed={crossed.includes(ingredient.id)} handleUpdate={handleUpdate} handleDelete={handleDelete} handleUpdateCrossed={handleUpdateCrossed}/>
                     ))
-                    : `Nothing to shop for!`}
+                    : `Nothing to shop for yet? Begin by creating a meal plan for the week!`}
                 </div>
             </div>
             {notification && <Toast message={notification.message} type={notification.type} handleClose={() => setNotification(null)} />}

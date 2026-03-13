@@ -9,7 +9,7 @@ UNIT_TO_GRAMS = {
     "oz": 28.35,
     "ounces": 28.35,
     "lb": 453.59,
-    "lbs": 453.39,
+    "lbs": 453.59,
     "pounds": 453.59,
     
     # Volume to weight
@@ -26,7 +26,7 @@ UNIT_TO_GRAMS = {
 }
 
 async def ConvertToGrams(quantity: float, unit: str, session, ingredient: str = None):
-    unit_lower = unit.lower().strip()
+    unit_lower = (unit or "").lower().strip()
     if unit_lower in UNIT_TO_GRAMS:
         conversion = UNIT_TO_GRAMS[unit_lower]
         return conversion * quantity
