@@ -57,7 +57,7 @@ password_helper = PasswordHelper()
 @oauth_router.get("/auth/google/authorize")
 async def google_authorize():
     authorization_url = await google_oauth_client.get_authorization_url(
-        redirect_uri="http://localhost:8000/auth/google/callback",
+        redirect_uri=os.getenv("GOOGLE_REDIRECT_URI"),
         scope=["openid", "email", "profile"]
     )
     return {"authorization_url": authorization_url}
@@ -65,7 +65,7 @@ async def google_authorize():
 @oauth_router.get("/auth/google/callback")
 async def google_callback(code: str, response: Response, user_manager = Depends(get_user_manager), strategy = Depends(get_jwt_strategy), session: AsyncSession = Depends(get_async_session)):
     # Get token from Google
-    token_data = await google_oauth_client.get_access_token(code, "http://localhost:8000/auth/google/callback")
+    token_data = await google_oauth_client.get_access_token(code, os.getenv("GOOGLE_REDIRECT_URI"))
     
     # Get user email from Google
     user_id, user_email = await google_oauth_client.get_id_email(token_data["access_token"])
@@ -74,7 +74,7 @@ async def google_callback(code: str, response: Response, user_manager = Depends(
     try:
         user = await user_manager.get_by_email(user_email)
         if user.is_deleted:
-            return RedirectResponse("http://localhost:5173/login?deleted-error=account_deleted", status_code=302)
+            return RedirectResponse(os.getenv("REDIRECT_RESPONSE_URL"), status_code=302)
     except UserNotExists:
         user = await user_manager.create(UserCreate(email=user_email, password=str(uuid.uuid4()), fname="", lname=""))
         # Create OAuthAccount record
@@ -94,7 +94,7 @@ async def google_callback(code: str, response: Response, user_manager = Depends(
     jwt_token = await strategy.write_token(user)
     
     # Set cookie  
-    response = RedirectResponse("http://localhost:5173/complete-profile", status_code=302)
+    response = RedirectResponse(os.getenv("FRONTEND_REDIRECT"), status_code=302)
     response.set_cookie(
         key=cookie_transport.cookie_name,
         value=jwt_token,

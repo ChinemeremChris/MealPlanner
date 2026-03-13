@@ -77,8 +77,8 @@ export const RecipeDetails = () => {
                     const newData = await response.json()
                     setData(newData)
                 }else{
-                    const errData = await response.json()
-                    throw new Error(errData.detail)
+                    const errorData = await response.json()
+                    throw new Error(errorData.detail)
                 }
             }catch(e){
                 setNotification({message: e.message, type: "error"})

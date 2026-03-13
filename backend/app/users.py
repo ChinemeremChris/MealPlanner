@@ -38,7 +38,8 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
             raise HTTPException(status_code=403, detail="Account has been deleted")
 
     async def on_after_forgot_password(self, user: User, token: str, request: Request | None = None):
-        reset_link = f"http://localhost:5173/reset-password?token={token}"
+        FRONTEND_URL = os.getenv("FRONTEND_URL")
+        reset_link = f"{FRONTEND_URL}/reset-password?token={token}"
         SendEmail(user.email, "Password Reset", f"<p>Click <a href='{reset_link}'>here</a> to reset your password</p>")
 
     async def on_after_request_verify(self, user: User, token: str, request: Request | None = None):
