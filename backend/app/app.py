@@ -101,9 +101,9 @@ async def google_callback(code: str, response: Response, user_manager = Depends(
         max_age=cookie_transport.cookie_max_age,
         path=cookie_transport.cookie_path,
         domain=cookie_transport.cookie_domain,
-        secure=cookie_transport.cookie_secure,
-        httponly=cookie_transport.cookie_httponly,
-        samesite=cookie_transport.cookie_samesite,
+        secure=True,
+        httponly=True,
+        samesite="none",
     )
 
     return response

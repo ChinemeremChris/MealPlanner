@@ -52,8 +52,8 @@ async def get_user_manager(user_db=Depends(get_user_db)):
 cookie_transport = CookieTransport(
     cookie_max_age=7200,
     cookie_httponly=True,
-    cookie_secure=os.getenv("COOKIE_SECURE", "false").lower() == "true",
-    cookie_samesite="lax"
+    cookie_secure=os.getenv("COOKIE_SECURE", "true").lower() == "true",
+    cookie_samesite="none"
     )
 
 def get_jwt_strategy() -> JWTStrategy:
