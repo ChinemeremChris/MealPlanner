@@ -15,7 +15,7 @@ export const Navbar = () => {
     const handleSearch = (searchTerm) => {
         navigate(`/search?q=${searchTerm}`)
     }
-
+    //fixed naming
     return (
         <>
             <nav>
