@@ -94,14 +94,12 @@ export const EditRecipeModal = ({ recipe, setEditOpen, setHasRecipeBeenUpdated }
             setNotification({message: e.message, type: "error"})
         }finally{
             setEditOpen(false)
-            console.log("finally")
             setLoading(false)
         }
     }
 
     useEffect(() => {
         const loadData = () => {
-            console.log("recipe", recipe)
             let currentIngList = recipe.ingredients.map((ingredient) => (
                 {
                     id: nextID.current++,
@@ -112,7 +110,6 @@ export const EditRecipeModal = ({ recipe, setEditOpen, setHasRecipeBeenUpdated }
                 }
             ))
             setRows(currentIngList)
-            console.log("rows", rows)
             let currentInstructionList = recipe.instructions
             .sort((a, b) => a.step_number - b.step_number)
             .map((instruction) => (

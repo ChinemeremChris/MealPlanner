@@ -102,7 +102,6 @@ export const SharedRecipes = () => {
 
     const handleDeleteRecipe = async (recipe_id) => {
         const data_to_find = data.find(r => r.recipe_id === recipe_id)
-        console.log("attempting to delete", data_to_find?.recipe_name, recipe_id)
         try{
             const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes`, {
                 method: "DELETE",

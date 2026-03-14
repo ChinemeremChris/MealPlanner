@@ -28,7 +28,6 @@ export const MyRecipes = () => {
                 
                 if (response.ok){
                     const result = await response.json()
-                    console.log(result)
                     setData(result)
                 }else{
                     const errData = await response.json()
@@ -38,8 +37,6 @@ export const MyRecipes = () => {
                 setNotification({message: error.message, type: "error"})
             }finally{
                 setisLoading(false)
-                console.log("errData")
-                console.log(isError)
             }
         }
 

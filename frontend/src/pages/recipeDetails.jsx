@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState, useContext } from "react"
 import { UserContext } from "../contexts/UserContext"
-import { User, Atom, Tag, Timer, Bookmark, Pencil, Trash2 } from "lucide-react"
+import { User, Atom, Tag, Timer, Bookmark, Pencil, Trash2, Utensils } from "lucide-react"
 import { EditRecipeModal } from "../components/editRecipe"
 import { DeleteConfirmationModal } from "../components/deleteConfirmationModal"
 import styles from '../styles/recipeDetails.module.css'
@@ -21,7 +21,6 @@ export const RecipeDetails = () => {
     const navigate = useNavigate()
 
     const toggleFavorite = async () => {
-        console.log("toggling favorite")
         try{
             const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites/`, {
                 method: isFavorited ? "DELETE" : "POST",
@@ -91,7 +90,6 @@ export const RecipeDetails = () => {
 
     useEffect(() => {
         const checkIfFavorite = async () => {
-            console.log("checking if favorite")
             try{
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/favorites/${recipe_id}`, {
                     method: "GET",
@@ -145,6 +143,10 @@ export const RecipeDetails = () => {
                                 <div className={`${styles.creatorName} ${styles.topInfo}`}>
                                     <div className={styles.label}><User /> Creator</div>
                                     <div className={styles.value}>{`${data.creator_name}`}</div>
+                                </div>
+                                <div className={`${styles.serving} ${styles.topInfo}`}>
+                                    <div className={styles.label}><Utensils /> Serving</div>
+                                    <div className={styles.value}>{`${data.serving}`}</div>
                                 </div>
                                 <div className={`${styles.calories} ${styles.topInfo}`}>
                                     <div className={styles.label}><Atom /> Calories</div>

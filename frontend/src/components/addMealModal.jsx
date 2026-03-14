@@ -7,9 +7,11 @@ import { Toast } from './Toast'
 
 export const MealModal = ({ setAddMeal, selectedSlot, setMealPlan }) => {
     const [recipeList, setRecipeList] = useState([])
+    const [isLoading, setIsLoading]= useState(false)
     const [notification, setNotification] = useState(null)
     const onSearch = async (searchTerm) => {
         setNotification(null)
+        setIsLoading(true)
         try{
             const response = await fetch(`${import.meta.env.VITE_API_URL}/search?search_term=${searchTerm}`, {
                 method: "GET",
@@ -22,7 +24,6 @@ export const MealModal = ({ setAddMeal, selectedSlot, setMealPlan }) => {
             }
             const data = await response.json()
             const recipes = data.recipes
-            console.log("data", data)
             setRecipeList(recipes.map((recipe) => ({
                 recipe_id: recipe.recipe_id,
                 recipe_name: recipe.recipe_name,
@@ -34,7 +35,7 @@ export const MealModal = ({ setAddMeal, selectedSlot, setMealPlan }) => {
             setNotification({message: e.message, type: "error"})
             setRecipeList([])
         }finally{
-            console.log("finished")
+            setIsLoading(false)
         }
     }
 
@@ -54,7 +55,8 @@ export const MealModal = ({ setAddMeal, selectedSlot, setMealPlan }) => {
                         <div></div>
                     </div>
                     <div className={styles.recipeResults}>
-                        {recipeList.length === 0 && <p>Search for recipes</p>}
+                        {isLoading && <p>Searching...</p>}
+                        {recipeList.length & !isLoading === 0 && <p>Search for recipes</p>}
                         {
                             recipeList.map((recipe) => (
                                 <RecipeMealCard key={recipe.recipe_id} recipe={recipe} handleMealAdd={handleMealAdd}/>

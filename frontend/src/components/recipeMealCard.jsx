@@ -2,7 +2,6 @@ import styles from '../styles/recipeMealCard.module.css'
 
 export const RecipeMealCard = ({ recipe, handleMealAdd }) => {
     const { recipe_name, calories, prep_time, photo_url } = recipe
-    console.log(recipe_name, calories, prep_time, photo_url)
     return (
         <>
             <div className={styles.card}>

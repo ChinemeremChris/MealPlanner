@@ -121,8 +121,6 @@ export const Mealpage = () => {
                 meal_type: mealType
             }
         })
-        console.log("Sending this:", mealArray)
-        console.log("1st item is:", mealArray[0])
         const [start, end] = getWeekStartEnd(weekStart)
         try{
             const response = await fetch(`${import.meta.env.VITE_API_URL}/batch/meals?start=${start}&end=${end}`,{
@@ -141,7 +139,6 @@ export const Mealpage = () => {
             setNotification({message: "Meal Plan saved successfully", type:"success"})
         }catch (e){
             setNotification({message: e.message || "Save unsuccessful", type: "error"})
-            console.log(e.message)
         }finally{
             console.log("finally")
         }
@@ -183,7 +180,6 @@ export const Mealpage = () => {
         const fetchMeals = async () => {
             try{
                 const [start, end] = getWeekStartEnd(weekStart)
-                console.log(`start = ${start} end = ${end}`)
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/meals?start=${start}&end=${end}`,
                     {
                         method: "GET",
@@ -194,7 +190,6 @@ export const Mealpage = () => {
                     throw new Error("Error loading meal plan")
                 }
                 const mealData = await response.json()
-                console.log(mealData)
                 let meal_plan_obj = {}
                 for (const meal of mealData){
                     const key = `${meal.meal_date}-${meal.meal_type}`

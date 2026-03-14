@@ -88,9 +88,7 @@ export const Profile = () => {
                 for (let i = 0; i < 3; i++){
                     result[i] && threeFaves.push(result[i])
                 }
-                console.log("favorite recipes", result)
                 const ids = new Set(result.map((recipe) => (recipe.recipe_id)))
-                console.log("ids", ids)
                 setFavoriteIds(ids)
                 setFavoriteRecipes(threeFaves)
             }catch(e){

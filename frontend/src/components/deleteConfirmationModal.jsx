@@ -5,8 +5,8 @@ import { useState } from 'react'
 export const DeleteConfirmationModal = ({ recipe_name, deleteRecipe, setDeleteModalOpen }) => {
     const [deleting, setDeleting]= useState(false)
     const handleDeleteRecipe = async () => {
-        await deleteRecipe()
         setDeleting(true)
+        await deleteRecipe()
     }
     return(
         <div className={styles.overlay}>

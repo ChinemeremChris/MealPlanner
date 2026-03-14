@@ -2,8 +2,10 @@ import { useState, useEffect } from "react"
 import { RecipeCard } from "../components/recipeCard"
 import styles from '../styles/home.module.css'
 import { useNavigate } from "react-router-dom"
+import { Toast } from "../components/Toast"
 export const Homepage = () => {
     const [recipeList, setRecipeList] = useState([])
+    const [notification, setNotification] = useState(null)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -21,7 +23,7 @@ export const Homepage = () => {
                 const result = await response.json()
                 setRecipeList(result.slice(0, 4))
             }catch(e){
-                console.log(e)
+                setNotification({message: e.message, type:"error"})
             }
         }
         fetchRecipes()
@@ -89,6 +91,7 @@ export const Homepage = () => {
                     </div>
                 </div>
             </div>
+            {notification && <Toast message={notification.message} type={notification.type} handleClose={() => setNotification(null)} />}
         </div>
     )
 }

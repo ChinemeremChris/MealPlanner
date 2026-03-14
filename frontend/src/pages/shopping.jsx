@@ -64,7 +64,6 @@ export const Shopping = () => {
     useEffect(() => {
         const fetchIngredients = async () => {
             const [start, end] = getWeekStartEnd(weekStart)
-            console.log("fetching ingredients")
             try{
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/ingredients?start=${start}&end=${end}`, {
                     method: "GET",
@@ -75,8 +74,6 @@ export const Shopping = () => {
                     throw new Error("Error fetching ingredients")
                 }
                 const data = await response.json()
-                console.log("ingredients data")
-                console.log(data)
                 let data_array = []
                 Object.values(data).forEach((ingredient) => {
                     const existing = data_array.find((item) => item.name === ingredient["ingredient_name"])

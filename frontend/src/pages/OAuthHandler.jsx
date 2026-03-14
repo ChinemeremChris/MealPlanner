@@ -39,7 +39,6 @@ export const OAuthHandler = () => {
             }
 
             const result = await response.json()
-            console.log("result", result)
             navigate("/")
         }catch(e){
             setNotification({message: e.message, type: "error"})

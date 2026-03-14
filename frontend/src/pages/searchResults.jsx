@@ -11,6 +11,7 @@ export const SearchResults = () => {
     const [recipes, setRecipes] = useState([])
     const [activeTab, setActiveTab] = useState('recipes')
     const [notification, setNotification] = useState(null)
+    const [isLoading, setIsLoading]= useState(false)
     const [searchParams] = useSearchParams()
     const searchTerm = searchParams.get('q')
     const [favoritedRecipes, setFavoritedRecipes] = useState(new Set())
@@ -43,13 +44,13 @@ export const SearchResults = () => {
                 throw new Error (data.details || "Couldn't update favorite")
             }
         }catch(e){
-            console.log(e.message)
+            setNotification({message: e.message, type: "error"})
         }
     }
 
     useEffect(() => {
         const fetchSearch = async () => {
-            console.log("search term", searchTerm)
+            setIsLoading(true)
             try{
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/search?search_term=${searchTerm}`, {
                     method: "GET",
@@ -61,9 +62,10 @@ export const SearchResults = () => {
                 const data = await response.json()
                 setRecipes(data.recipes || [])
                 setUsers(data.users || [])
-                console.log("users", data.users)
             }catch (e){
                 setNotification({message: e.message, type: "error"})
+            }finally{
+                setIsLoading(false)
             }
         }
         fetchSearch()
@@ -105,6 +107,7 @@ export const SearchResults = () => {
 
             {activeTab === 'recipes' && (
                 <div className={styles.recipeGrid}>
+                    {isLoading && `Searching for recipes...`}
                     {recipes.map((recipe) => (
                         <RecipeCard key={recipe.recipe_id} creator_id={recipe.creator_id} creator_name={recipe.creator_name} recipe_id={recipe.recipe_id} recipe_name={recipe.recipe_name} photo_url={recipe.photo_url} calories={recipe.calories} prep_time={recipe.prep_time} isFavorited={favoritedRecipes.has(recipe.recipe_id)} toggleFavorite={toggleFavorite}/>
                     ))}
@@ -113,6 +116,7 @@ export const SearchResults = () => {
 
             {activeTab === 'users' && (
                 <div className={styles.userGrid}>
+                    {isLoading && `Searching for users...`}
                     {users.map((user) => (
                         <UserCard key={user.id} fname={user.fname} lname={user.lname} recipe_count={user.recipe_count}/>
                     ))}

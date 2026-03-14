@@ -30,13 +30,24 @@ export const SignUp = () => {
                 password: passwordText
             })
         })
-        if (response.ok){
-            const data = await response.json()
-            navigate('/login')
-        }else{
-            const errorData = await response.json()
-            throw new Error(errorData.detail || 'Sign up failed')
-        }
+            if (response.ok){
+                const data = await response.json()
+                navigate('/login')
+            }
+            
+            switch (response.status) {
+                case 401:
+                    setNotification({message: "Incorrect email or password", type: "error"});
+                    break;
+                case 403:
+                    setNotification({message: "Account access denied", type: "error"});
+                    break;
+                case 422:
+                    setNotification({message: "Invalid input format", type: "error"});
+                    break;
+                default:
+                    setNotification({message: "Unexpected error occurred", type: "error"});
+            }
 
         }catch(e){
             setNotification({message: e.message, type: "error"})

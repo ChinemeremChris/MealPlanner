@@ -150,7 +150,6 @@ export const Settings = () => {
             if (!response.ok){
                 setMealPlanSwitch(!newVal)
                 const errData = await response.json()
-                console.log(errData)
                 throw new Error("Error switching preference. Try again!")
             }
         }catch(e){
@@ -173,7 +172,6 @@ export const Settings = () => {
             if (!response.ok){
                 setGroceryReminder(!newVal)
                 const errData = await response.json()
-                console.log(errData)
                 throw new Error("Error switching preference. Try again!")
             }
         }catch(e){

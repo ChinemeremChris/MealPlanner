@@ -36,5 +36,5 @@ async def ConvertToGrams(quantity: float, unit: str, session, ingredient: str = 
             ing_result = await session.scalar(select(IngredientConversion).where(IngredientConversion.ingredient_name == ing_lower))
             if ing_result:
                 return quantity * ing_result.unit_weight_grams
-            return quantity * 100
+            return quantity * 50
 

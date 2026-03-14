@@ -887,7 +887,7 @@ async def DeleteFavorite(recipe_id: Annotated[uuid.UUID, Body()], user: User = D
 
 @app.get("/homepage")
 async def HomePageRecipes(session: AsyncSession = Depends(get_async_session)):
-    query = select(Recipe).options(selectinload(Recipe.recipe_ingredients).selectinload(Recipe_Ingredient.ingredient), selectinload(Recipe.creator), selectinload(Recipe.instructions)).where(Recipe.creator_id == 'c4e426c6-9173-464f-9cad-128dc4a92cef')
+    query = select(Recipe).options(selectinload(Recipe.recipe_ingredients).selectinload(Recipe_Ingredient.ingredient), selectinload(Recipe.creator), selectinload(Recipe.instructions)).where(Recipe.creator_id == os.getenv("BASE_USER"))
     recipes = await session.scalars(query)
     recipe_out_list = []
     for recipe in recipes:

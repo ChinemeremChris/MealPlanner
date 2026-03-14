@@ -26,7 +26,6 @@ export const AddRecipeModal = ({ setAddOpen, triggerRefetch }) => {
     }
 
     const rowUpdate = (rowID, field, value) => {
-        console.log(field, value)
         const copyRows = rows.map(row => row.id === rowID ? {...row, [field]: value} : row)
         setRows(copyRows)
     }

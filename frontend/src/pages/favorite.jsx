@@ -87,15 +87,13 @@ export const FavoritePage = () => {
                     throw new Error (err)
                 }
                 const newData = await response.json()
-                console.log("Favorites data:", newData)
-                console.log("First recipe creator_id:", newData[0]?.creator_id)
                 setData(newData)
                 const favoriteIds = new Set(newData.map((recipe) => (recipe.recipe_id)))
                 setFavoritedRecipes(favoriteIds)
             }catch(e){
                 setNotification({message: e.message, type:"error"})
             }finally{
-                console.log("finished shared")
+                console.log("finished")
             }
         }
 
