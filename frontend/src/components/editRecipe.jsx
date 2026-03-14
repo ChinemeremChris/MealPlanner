@@ -71,7 +71,7 @@ export const EditRecipeModal = ({ recipe, setEditOpen, setHasRecipeBeenUpdated }
         form.append('updated_ingredients', JSON.stringify(ingredientData))
         form.append('updated_instructions', JSON.stringify(instructionData))
         if (imageFile){
-            form.append('file', imageFile)
+            form.append('updated_image', imageFile)
         }
 
         try{
