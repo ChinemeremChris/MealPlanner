@@ -60,7 +60,7 @@ def send_grocery_reminder():
                     existing = False
                     for ing_dict in ingredient_out_list:
                         if (ing_dict["ingredient_name"] == ri.ingredient.ingredient_name):
-                            ing_dict["quantity"] += ri.quantity
+                            ing_dict["ingredient_quantity"] += ri.quantity
                             existing = True
                             break
                     if not existing:

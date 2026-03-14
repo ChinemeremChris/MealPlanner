@@ -605,7 +605,7 @@ async def Get_Ingredients(start: Annotated[date, Query()], end: Annotated[date, 
                 ingredient_unit = ri.unit,
                 ingredient_preparation_style = ri.preparation_style
             ))
-    
+
     return ingredient_out_list
 
 @app.post("/meal")
