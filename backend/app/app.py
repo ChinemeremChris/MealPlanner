@@ -469,7 +469,7 @@ async def DeleteRecipe(recipe_id: Annotated[uuid.UUID, Body()], user: User = Dep
     return Response(status_code=204)
 
 @app.patch("/recipes/{recipeID}")
-async def UpdateRecipe(recipeID: Annotated[uuid.UUID, Path()], updated_recipe: Annotated[str, Form()], updated_ingredients: Annotated[str, Form()], updated_instructions: Annotated[str, Form()], updated_image: UploadFile | None = None, user: User = Depends(current_active_user), session: AsyncSession = Depends(get_async_session)):
+async def UpdateRecipe(recipeID: Annotated[uuid.UUID, Path()], updated_recipe: Annotated[str, Form()], updated_ingredients: Annotated[str, Form()], updated_instructions: Annotated[str, Form()], updated_image: UploadFile | None = File(None), user: User = Depends(current_active_user), session: AsyncSession = Depends(get_async_session)):
     query = select(Recipe).options(selectinload(Recipe.recipe_ingredients)).where(Recipe.recipe_id == recipeID)
     recipe = await session.scalar(query)
     existing_ingredients_result = await session.scalars(select(Ingredient))
@@ -561,7 +561,7 @@ async def UpdateRecipe(recipeID: Annotated[uuid.UUID, Path()], updated_recipe: A
         calorie_info = await session.scalar(calorie_query)
         quantity_in_grams = await ConvertToGrams(new_ing.ingredient_quantity, new_ing.ingredient_unit, session, new_ing.ingredient_name)
         if calorie_info:
-            recipeCalories += (calorie_info.calories * new_ing.ingredient_quantity)
+            recipeCalories += (calorie_info.calories * quantity_in_grams)
         if not calorie_info:
             calorie_add = await search_ingredient_calories(new_ing.ingredient_name, new_ing.ingredient_preparation_style)
             if calorie_add:
